@@ -7,6 +7,16 @@ import App from './App'
 {{#router}}
 import router from './router'
 {{/router}}
+{{#vuex}}
+import store from './vuex/store'
+{{/vuex}}
+import { AjaxPlugin } from 'vux'
+Vue.use(AjaxPlugin)
+console.log('依赖axios的Vue.http: ', Vue.http)
+
+if(process.env.NODE_ENV !== 'production'){
+
+}
 
 Vue.config.productionTip = false
 
@@ -16,6 +26,9 @@ new Vue({
   {{#router}}
   router,
   {{/router}}
+  {{#vuex}}
+  store,
+  {{/vuex}}
   {{#if_eq build "runtime"}}
   render: h => h(App)
   {{/if_eq}}
@@ -24,3 +37,6 @@ new Vue({
   template: '<App/>'
   {{/if_eq}}
 })
+
+const FastClick = require('fastclick')
+FastClick.attach(document.body)
